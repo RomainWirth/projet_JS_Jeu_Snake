@@ -1,4 +1,4 @@
-window.onload = function(){
+window.onload = () => {
     const canvasWidth = 900;
     const canvasHeight = 600;
     let blockSize = 30;
@@ -15,7 +15,7 @@ window.onload = function(){
     
     init();
     
-    function init(){
+    const init = () => {
         let canvas = document.createElement('canvas');
         canvas.width = canvasWidth;
         canvas.height = canvasHeight;
@@ -31,7 +31,7 @@ window.onload = function(){
         refreshCanvas();
     }
     
-    function refreshCanvas(){
+    const refreshCanvas = () => {
         snakeye.advance();
         if (snakeye.checkCollision()){
             gameOver();
@@ -51,7 +51,7 @@ window.onload = function(){
          }
     }
     
-    function gameOver(){
+    const gameOver = () => {
         context.save();
         context.font = "bold 70px sans-serif";
         context.fillStyle = "#000";
@@ -69,7 +69,7 @@ window.onload = function(){
         context.restore();
     }
     
-    function restart(){
+    const restart = () => {
         snakeye = new Snake([[6,4],[5,4],[4,4],[3,4],[2,4]],"right");
         applebee = new Apple([10,10]);
         score = 0;
@@ -77,7 +77,7 @@ window.onload = function(){
         refreshCanvas();
     }
     
-    function drawScore(){
+    const drawScore = () => {
         context.save();
         context.font = "bold 200px sans-serif";
         context.fillStyle = "gray";
@@ -89,13 +89,13 @@ window.onload = function(){
         context.restore();
     }
     
-    function drawBlock(context, position){
+    const drawBlock = (context, position) => {
         let x = position[0]*blockSize;
         let y = position[1]*blockSize;
         context.fillRect(x,y,blockSize,blockSize);
     }
     
-    function Snake(body, direction){
+    const Snake = (body, direction) => {
         this.body = body;
         this.direction = direction;
         this.ateApple = false;
@@ -187,7 +187,7 @@ window.onload = function(){
         }
     }
     
-    function Apple(position){
+    const Apple = (position) => {
         this.position = position;
         
         this.draw = function(){
